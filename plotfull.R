@@ -31,7 +31,7 @@ plot.zoo(met.xts[,4],
          xaxs = "i", yaxs = "i",
          xaxt = "n", yaxt = "n",
          xlab = "", ylab = "",
-         ylim = c(-50,50),
+         xlim = datelim, ylim = c(-50,50),
          col = "red"
          )
 axis(4, at = c(-10,0,10,20), col = "red")
