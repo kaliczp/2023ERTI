@@ -2,9 +2,9 @@ Sys.setenv(TZ = "UTC")
 min(tv.xts[,1], na.rm = TRUE);max(tv.xts[,2], na.rm = TRUE)
 datelim.full <- c(ISOdate(2018,11,1, tz = "UTC"), ISOdate(2022,10,10, tz = "UTC"))
 
-plot.fullgw <- function(datelim, pdf = TRUE, temp = TRUE) {
+plot.fullgw <- function(outfile, datelim, pdf = TRUE, temp = TRUE) {
     if(pdf) {
-        pdf(width = 14)
+        pdf(outfile, width = 14)
     }
 par(mar = c(3.1, 4.1, 0.6, 4.1))
 plot.zoo(tv.xts[,1],
@@ -42,4 +42,4 @@ mtext("Temp. [deg. C]", 4, at = 10, col = "red", line = 3)
     }
 }
 
-plot.fullgw(datelim = datelim.full)
+plot.fullgw(outfile = "Gwfull.pdf", datelim = datelim.full)
