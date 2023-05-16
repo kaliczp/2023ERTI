@@ -11,6 +11,7 @@ plot.zoo(tv.xts[,1],
          )
 lines(as.zoo(tv.xts[,2]),
       col = 2)
+legend("bottomleft", legend = c("Oak", "Contr."), lwd = 1, col = 1:2)
 par(new = TRUE)
 plot.zoo(met.xts[,3], type = "h", lend = 2,
          xaxs = "i", yaxs = "i",
