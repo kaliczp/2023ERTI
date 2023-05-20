@@ -6,4 +6,8 @@ amptemp$Year <- as.factor(format(amptemp$Year, "%Y"))
 
 library(ggplot2)
 GWaty <- ggplot(data = amptemp, aes (y = Amp, x = GW))
-GWaty + geom_point(aes(color = Temp, shape = Year))
+
+pdf()
+GWaty + geom_point(aes(color = Temp, shape = Year)) +
+    theme_minimal()
+dev.off()
