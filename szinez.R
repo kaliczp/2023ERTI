@@ -4,5 +4,6 @@ amptemp <- amptemp.raw
 names(amptemp) <- c("Year", "GW", "Amp", "Temp")
 amptemp$Year <- as.factor(format(amptemp$Year, "%Y"))
 
-plot(Amp ~ GW, data = amptemp)
-     
+library(ggplot2)
+GWaty <- ggplot(data = amptemp, aes (y = Amp, x = GW))
+GWaty + geom_point()
