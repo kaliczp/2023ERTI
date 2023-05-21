@@ -2,7 +2,8 @@ date.df <- data.frame(yr = c(2018, rep(2019:2022, lenght = 8, each = 2)),
                       mnth = rep(c(11,5), length = 9)
                       )
 
-    ttdate <- 1
+pdf(width = 14)
+for(ttdate in 1:(nrow(date.df) - 1)) {
     datelim.part <-  c(ISOdate(date.df[ttdate,"yr"],
                                date.df[ttdate,"mnth"],
                                1, tz = "UTC"),
@@ -13,4 +14,6 @@ date.df <- data.frame(yr = c(2018, rep(2019:2022, lenght = 8, each = 2)),
     monthnam <- ifelse(date.df[ttdate,"mnth"] == 5, "maj", "nov")
     plot.fullgw(outfile = paste0("Gw", date.df[ttdate,"yr"],
                                  monthnam, ".pdf"),
-                temp = FALSE, datelim = datelim.part)
+                temp = FALSE, datelim = datelim.part, pdf = FALSE)
+}
+dev.off()
