@@ -43,3 +43,6 @@ mtext("Temp. [deg. C]", 4, at = 10, col = "red", line = 3)
 }
 
 plot.fullgw(gw = tv.xts, met = met.xts, outfile = "Gwfull.pdf", datelim = datelim.full)
+
+datelim.long <- c(ISOdate(2015,11,1, tz = "UTC"), ISOdate(2022,10,08, tz = "UTC"))
+plot.fullgw(gw = tvlong.xts, met = tvlong.xts, outfile = "GwLongfull.pdf", datelim = datelim.long)
