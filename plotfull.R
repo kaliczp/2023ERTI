@@ -2,21 +2,21 @@ Sys.setenv(TZ = "UTC")
 min(tv.xts[,1], na.rm = TRUE);max(tv.xts[,2], na.rm = TRUE)
 datelim.full <- c(ISOdate(2018,11,1, tz = "UTC"), ISOdate(2022,10,10, tz = "UTC"))
 
-plot.fullgw <- function(outfile, datelim, pdf = TRUE, temp = TRUE) {
+plot.fullgw <- function(gw, met, outfile, datelim, pdf = TRUE, temp = TRUE) {
     if(pdf) {
         pdf(outfile, width = 14)
     }
 par(mar = c(3.1, 4.1, 0.6, 4.1))
-plot.zoo(tv.xts[,1],
+plot.zoo(gw[,1],
          xaxs = "i", yaxs = "i",
          xlab = "", ylab = "GW [m]",
          xlim = datelim, ylim = c(-8.76, -3)
          )
-lines(as.zoo(tv.xts[,2]),
+lines(as.zoo(gw[,2]),
       col = 2)
 legend("bottomleft", legend = c("Oak", "Contr."), lwd = 1, col = 1:2)
 par(new = TRUE)
-plot.zoo(met.xts[,3], type = "h", lend = 2,
+plot.zoo(met[,3], type = "h", lend = 2,
          xaxs = "i", yaxs = "i",
          xaxt = "n", yaxt = "n",
          xlab = "", ylab = "",
@@ -27,7 +27,7 @@ axis(4, at = c(0,10,20), col = "blue")
 mtext("Prec. [mm/day]", 4, at = 10, col = "blue", line = 3)
 if(temp) {
 par(new = TRUE)
-plot.zoo(met.xts[,4],
+plot.zoo(met[,4],
          xaxs = "i", yaxs = "i",
          xaxt = "n", yaxt = "n",
          xlab = "", ylab = "",
@@ -42,4 +42,4 @@ mtext("Temp. [deg. C]", 4, at = 10, col = "red", line = 3)
     }
 }
 
-plot.fullgw(outfile = "Gwfull.pdf", datelim = datelim.full)
+plot.fullgw(gw = tv.xts, met = met.xts, outfile = "Gwfull.pdf", datelim = datelim.full)
