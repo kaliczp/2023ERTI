@@ -11,3 +11,7 @@ names(met.raw) <- c("Date1", "Date2", "Oak", "Controll", "Prec", "Temp")
 ## Remove missing data
 tv.nona <- tv.raw[!is.na(tv.raw$Oak),]
 met.nona <- met.raw[!is.na(met.raw$Temp),]
+
+## Longer daily
+tvlong.raw <- read_excel("Alapadatok PéternekV0605.xlsx",4)
+names(tvlong.raw) <- c("Date1", "Date2", "Oak", "Controll","Prec","Temp")
