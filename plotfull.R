@@ -10,7 +10,7 @@ par(mar = c(3.1, 4.1, 0.6, 4.1))
 plot.zoo(gw[,1],
          xaxs = "i", yaxs = "i",
          xlab = "", ylab = "GW [m]",
-         xlim = datelim, ylim = c(-8.76, -3)
+         xlim = datelim, ylim = c(-8.76, -2)
          )
 lines(as.zoo(gw[,2]),
       col = 2)
