@@ -2,8 +2,8 @@ Sys.setenv(TZ = "UTC")
 min(tv.xts[,1], na.rm = TRUE);max(tv.xts[,2], na.rm = TRUE)
 datelim.full <- c(ISOdate(2018,11,1, tz = "UTC"), ISOdate(2022,10,10, tz = "UTC"))
 
-plot.fullgw <- function(gw, met, outfile, datelim, pdf = TRUE, temp = TRUE) {
-    if(pdf) {
+plot.fullgw <- function(gw, met, outfile = NULL, datelim, temp = TRUE) {
+    if(!is.null(outfile)) {
         pdf(outfile, width = 14)
     }
 par(mar = c(3.1, 4.1, 0.6, 4.1))
@@ -37,11 +37,12 @@ plot.zoo(met[,4],
 axis(4, at = c(-10,0,10,20), col = "red")
 mtext("Temp. [deg. C]", 4, at = 10, col = "red", line = 3)
 }
-    if(pdf) {
+    if(!is.null(outfile)) {
         dev.off()
     }
 }
 
+plot.fullgw(gw = tv.xts, met = met.xts, datelim = datelim.full)
 plot.fullgw(gw = tv.xts, met = met.xts, outfile = "Gwfull.pdf", datelim = datelim.full)
 
 datelim.long <- c(ISOdate(2015,11,1, tz = "UTC"), ISOdate(2022,10,08, tz = "UTC"))
