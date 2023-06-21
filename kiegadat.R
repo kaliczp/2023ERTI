@@ -20,3 +20,14 @@ lines(as.zoo(tv.xts)[,1], col = 3)
 gap1.xts <- kieg.xts['2020-01-28 18:29:59/2020-02-14 08:44:59']
 gap1.xts[,1] <- gap1.xts[,1] + 0.040439
 tv.xts <- c(tv.xts, gap1.xts)
+
+## Height difference gap2
+tail(tv.xts['2020-03-02'])
+kieg.xts['2020-03-02 01:44:59',1]
+head(tv.xts['2020-03-20',1])
+kieg.xts['2020-03-20 18:59:59',1]
+plot.zoo(kieg.xts['2020-03-02/2020-03-20',1]+0.047)
+lines(as.zoo(tv.xts)[,1], col = 3)
+gap2.xts <- kieg.xts['2020-03-02 01:59:59/2020-03-20 18:44:59']
+gap2.xts[,1] <- gap2.xts[,1] + 0.047
+tv.xts <- c(tv.xts, gap2.xts)
