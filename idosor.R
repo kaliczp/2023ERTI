@@ -10,3 +10,8 @@ tvlongfill.raw[2534:2538,1, drop = TRUE] # problem with length
 ## Fill 2020 oak gaps
 tvlongfill.xts['2020-01-28/2020-02-13',1] <- coredata(apply.daily(gap1.xts['/2020-02-13'], mean)[,1])
 tvlongfill.xts['2020-03-02/2020-03-19',1] <- coredata(apply.daily(gap2.xts['/2020-03-19'], mean)[,1])
+
+## Precipitation
+library(xts)
+Deb.xts <- xts(Deb.raw[,2], as.Date(as.character(Deb.raw[,1]), format="%Y%m%d"))
+Szeg.xts <- xts(Szeg.raw[,2], as.Date(as.character(Szeg.raw[,1]), format="%Y%m%d"))

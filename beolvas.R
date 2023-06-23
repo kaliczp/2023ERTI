@@ -20,3 +20,6 @@ names(tvlong.raw) <- c("Date1", "Date2", "Oak", "Controll","Prec","Temp")
 tvlongfill.raw <- read_excel("Alapadatok PéternekV0605.xlsx",4)
 names(tvlongfill.raw) <- c("Date1", "Date2", "Oak", "Controll","Prec","Temp")
 
+## Precipitation (odp)
+Deb.raw <- read.table("Csap/r_h_Debrecen_19012021.csv", sep = ";", head = TRUE)
+Szeg.raw <- read.table("Csap/r_h_szeged_18702021.csv", sep = ";", head = TRUE)
