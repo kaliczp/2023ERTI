@@ -47,3 +47,5 @@ plot.fullgw(gw = tv.xts, met = met.xts, outfile = "Gwfull.pdf", datelim = dateli
 
 datelim.long <- c(ISOdate(2015,11,1, tz = "UTC"), ISOdate(2022,10,08, tz = "UTC"))
 plot.fullgw(gw = tvlong.xts, met = tvlong.xts, outfile = "GwLongfull.pdf", datelim = datelim.long)
+
+plot.fullgw(gw = tvlongfill.xts, met = tvlongfill.xts, outfile = "GwLongfullfill.pdf", datelim = datelim.long)

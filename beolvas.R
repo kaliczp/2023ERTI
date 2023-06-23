@@ -15,3 +15,8 @@ met.nona <- met.raw[!is.na(met.raw$Temp),]
 ## Longer daily
 tvlong.raw <- read_excel("Alapadatok PéternekV0605.xlsx",4)
 names(tvlong.raw) <- c("Date1", "Date2", "Oak", "Controll","Prec","Temp")
+
+## Longeer daily with filled meteo
+tvlongfill.raw <- read_excel("Alapadatok PéternekV0605.xlsx",4)
+names(tvlongfill.raw) <- c("Date1", "Date2", "Oak", "Controll","Prec","Temp")
+
