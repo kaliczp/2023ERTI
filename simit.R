@@ -13,10 +13,12 @@ plot(oak.tst.diff)
 axis(2,0,tck=1, lab = FALSE)
 oak.tst.smth[which(oak.tst.diff<0)]
 
+oak.smth.xts <- xts(oak.tst.smth, index(oak.tst))
+
 ## plot
 pdf(width = 14)
 plot.zoo(oak.tst, xaxs = "i")
-lines(as.zoo(xts(oak.tst.smth, index(oak.tst))), col = 2)
+lines(as.zoo(oak.smth.xts), col = 2)
 dev.off()
 
 
