@@ -11,7 +11,7 @@ oak.tst.smth <- filter(coredata(oak.tst), filter = rep(1/385,385))
 
 ## plot
 pdf(width = 14)
-plot.zoo(oak.tst)
+plot.zoo(oak.tst, xaxs = "i")
 lines(as.zoo(xts(oak.tst.smth, index(oak.tst))), col = 2)
 dev.off()
 
