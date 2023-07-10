@@ -7,7 +7,11 @@ interv.asc <- data.frame(From = as.character(as.Date(interv.only[,1, drop = TRUE
 ## Given time intervall
 tti <- 1
 oak.tst <- tv.xts$Oak[paste(interv.asc[tti,1],interv.asc[tti,2], sep = "/")]
-oak.tst.smth <- filter(coredata(oak.tst), filter = rep(1/385,385))
+oak.tst.smth <- filter(coredata(oak.tst), filter = rep(1/13,13))
+oak.tst.diff <- diff(oak.tst.smth)
+plot(oak.tst.diff)
+axis(2,0,tck=1, lab = FALSE)
+oak.tst.smth[which(oak.tst.diff<0)]
 
 ## plot
 pdf(width = 14)
