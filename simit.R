@@ -11,18 +11,25 @@ par(mfrow = c(3,3))
 ## Given time intervall
 for(tti in 1:nrow(interv.asc)) {
     from.to <- paste(interv.asc[tti,1],interv.asc[tti,2], sep = "/")
-    oak.tst <- tv.xts$Oak[from.to]
-oak.tst.smth <- filter(coredata(oak.tst), filter = rep(1/13,13))
-oak.tst.diff <- diff(oak.tst.smth)
-## plot(oak.tst.diff)
-## axis(2,0,tck=1, lab = FALSE)
-oak.tst.smth[which(oak.tst.diff<0)]
-
-oak.smth.xts <- xts(oak.tst.smth, index(oak.tst))
-
-    plot.zoo(oak.tst, xaxs = "i", main = from.to)
-    lines(as.zoo(oak.smth.xts), col = "magenta")
+    simitott <- simit(tv.xts[,1], from.to)
+    plot.zoo(tv.xts[from.to,1], xaxs = "i", main = from.to)
+    lines(as.zoo(simitott), col = "magenta")
 }
 dev.off()
 
 plot(tv.xts$Controll['2018-11-01/2019-04-01'])
+
+simit <- function(x, fromto, wwidth = 13, diff.plot = FALSE) {
+    ## Cut with window
+    windowed <- x[from.to]
+    ## Generate filter
+    filter.vec <- rep(1/wwidth, wwidth)
+    filtered <- filter(coredata(windowed), filter = filter.vec)
+    ## Plot for test
+    if(diff.plot) {
+        tst.diff <- diff(filtered)
+        plot(tst.diff)
+        axis(2,0,tck=1, lab = FALSE)
+    }
+    xts(filtered, index(windowed))
+}
