@@ -1,5 +1,12 @@
-## Nov1-tőll május1-ig
-oak.tst <- tv.xts$Oak['2018-11-01/2019-04-01']
+## Intervall import
+library(readxl)
+raw.interv <- read_excel("Nyugalmi időszak dátumok Péternek.xlsx")
+interv.only <- na.omit(raw.interv[,2:3, drop = TRUE])
+interv.asc <- data.frame(From = as.character(as.Date(interv.only[,1, drop = TRUE])),
+                         To = as.character(as.Date(interv.only[,2, drop = TRUE])))
+## Given time intervall
+tti <- 1
+oak.tst <- tv.xts$Oak[paste(interv.asc[tti,1],interv.asc[tti,2], sep = "/")]
 oak.tst.smth <- filter(coredata(oak.tst), filter = rep(1/385,385))
 
 ## plot
