@@ -38,23 +38,36 @@ simit <- function(x, fromto, wwidth = 13, diff.plot = FALSE) {
     xts(filtered, index(windowed))
 }
 
+long.rang.full <- long.rang
 pdf(width = 35)
 for(tti in 1:length(interv.day)) {
     longfrom.to <- paste(interv.day[tti]-1,interv.day[tti]+6, sep = "/")
     longterm.xts <- tv.xts[longfrom.to,1]
+    longterm.lm <- lm(coredata(longterm.xts) ~ as.numeric(index(longterm.xts)))
     long.rang <- range(longterm.xts)
+    long.rang[1] <- trunc(long.rang[1]*10)/10 - 0.1
+    long.rang[2] <- long.rang[1] + 0.2
     from.to <- paste(interv.day[tti]-1,interv.day[tti]+1, sep = "/")
     simitott <- simit(tv.xts[,1], from.to)
+    strongsimitott <- simit(tv.xts[,1], from.to, wwidth = 25)
+    strongstrongsimitott <- simit(tv.xts[,1], from.to, wwidth = 93)
     par(fig = c(0,0.2,0,1))
     plot.zoo(tv.xts[as.character(interv.day[tti]),1], xaxs = "i", main = interv.day[tti])
     lines(as.zoo(simitott), col = "magenta")
+    lines(as.zoo(strongsimitott), col = "red")
+    lines(as.zoo(strongstrongsimitott), col = "blue")
+    abline(longterm.lm)
     par(fig = c(0.2,0.6,0,1), new = TRUE)
     plot.zoo(tv.xts[from.to,1], xaxs = "i", main = from.to, xaxs = "i", ylim = long.rang)
     lines(as.zoo(simitott), col = "magenta")
     axis(1, at = as.POSIXct(c(interv.day[tti],interv.day[tti]+1)), tck = 1, col = "lightgray", lab = FALSE)
+    abline(longterm.lm)
     par(fig = c(0.6,1,0,1), new = TRUE)
     plot.zoo(longterm.xts, xaxs = "i", main = longfrom.to, xaxs = "i", ylim = long.rang)
     lines(as.zoo(simitott), col = "magenta")
+    lines(as.zoo(strongsimitott), col = "red")
+    lines(as.zoo(strongstrongsimitott), col = "blue")
     axis(1, at = as.POSIXct(c(interv.day[tti],interv.day[tti]+1)), tck = 1, col = "lightgray", lab = FALSE)
+    abline(longterm.lm)
 }
 dev.off()
