@@ -10,3 +10,8 @@ recharge*60*60*24*1000
 
 plot(interv.day,recharge*60*60*24*1000)
 axis(2,0,tck=1)
+
+plot.zoo(tv.xts['2018-11-01/2018-11-03',1])
+points(as.POSIXct(interv.day[1]),as.numeric(coredata(tv.xts[as.character(interv.day[1]),1][1])))
+points(as.POSIXct(interv.day[1]+1),recharge[1]*60*60*24+as.numeric(coredata(tv.xts[as.character(interv.day[1]),1][1])))
+lines(c(as.POSIXct(interv.day[1]),as.POSIXct(interv.day[1]+1)),c(as.numeric(coredata(tv.xts[as.character(interv.day[1]),1][1])),recharge[1]*60*60*24+as.numeric(coredata(tv.xts[as.character(interv.day[1]),1][1]))))
