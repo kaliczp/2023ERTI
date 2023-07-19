@@ -31,3 +31,9 @@ lines(as.zoo(tv.xts)[,1], col = 3)
 gap2.xts <- kieg.xts['2020-03-02 01:59:59/2020-03-20 18:44:59']
 gap2.xts[,1] <- gap2.xts[,1] + 0.047
 tv.xts <- c(tv.xts, gap2.xts)
+
+## Kieg at the begin
+kieg2018nov <- as.data.frame(read_excel("adatsor 2018.10.27-10.31..xlsx"))
+names(kieg2018nov) <- c("Date", "Oak", "Controll")
+kieg2018nov.xts <- xts(kieg2018nov[,-1], kieg2018nov[,1])
+tv.xts <- c(kieg2018nov.xts, tv.xts)
