@@ -17,18 +17,20 @@ recharge <- numeric()
 }
 
 recharge <- white.lmxts(x = tv.xts[,1], at = interv.day)
+recharge.xts <- xts(recharge, interv.day)
 
 plot(interv.day,recharge)
 axis(2,0,tck=1)
 
-plot.recharge <- function(x, days) {
+plot.recharge <- function(x, rech) {
+    days <- index(rech)
     plot.intervall <- paste(days[1], days[length(days)], sep = "/")
-    plot.zoo(tv.xts[plot.intervall,1], xaxs = "i")
+    plot.zoo(x[plot.intervall,1], xaxs = "i")
     for(tti in 1:length(days)) {
         one.day <- as.POSIXct(c(days[tti], days[tti] + 1))
-        gw.at.midnight <- as.numeric(coredata(tv.xts[as.character(days[tti]),1][1]))
+        gw.at.midnight <- as.numeric(coredata(x[as.character(days[tti]),1][1]))
         recharge.points <- c(gw.at.midnight,
-                             recharge[tti]/1000 + gw.at.midnight
+                             coredata(rech[tti])/1000 + gw.at.midnight
                              )
         points(one.day[1], recharge.points[1])
         points(one.day[2], recharge.points[2])
@@ -38,6 +40,8 @@ plot.recharge <- function(x, days) {
     axis(1, at = as.POSIXct(days) + 4 * 60 * 60, tck = 1, col = "lighTgray", lab = FALSE)
 }
 
-plot.recharge(tv.xts, interv.day[1:10])
+plot.recharge(x = tv.xts, recharge.xts[1:10])
+plot.recharge(x = tv.xts, recharge.xts['2018-11-01/2018-11-10'])
+plot.recharge(x = tv.xts, recharge.xts['2020-01-21/2020-01-31'])
 
 write.table(data.frame(Date=interv.day, Rech = round(recharge,3)), "Rech_3_3.csv", row = FALSE)
