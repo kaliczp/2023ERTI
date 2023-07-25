@@ -13,24 +13,23 @@ plot.recharge(x = tv.xts[,1], recharge.xts['2021-11-01/2021-12-31'])
 plot.recharge(x = tv.xts[,1], recharge.xts['2022-01-01/2022-05-01'])
 
 ## 3.25 hours
-sim3hr.xts <- simit(tv.xts[,1], wwidth = 13)
+sim3hr.xts <- simit(tv.xts[,1], wwidth = 13, na.rm = TRUE)
 ## 6.25 hours
-sim6hr.xts <- simit(tv.xts[,1], wwidth = 25)
+sim6hr.xts <- simit(tv.xts[,1], wwidth = 25, na.rm = TRUE)
 ## 1 day
-sim1day.xts <- simit(tv.xts[,1], wwidth = 97)
+sim1day.xts <- simit(tv.xts[,1], wwidth = 97, na.rm = TRUE)
 ## 3 days
-sim3day.xts <- simit(tv.xts[,1], wwidth = 289)
+sim3day.xts <- simit(tv.xts[,1], wwidth = 289, na.rm = TRUE)
 ## 7 days
-sim7day.xts <- simit(tv.xts[,1], wwidth = 673)
+sim7day.xts <- simit(tv.xts[,1], wwidth = 673, na.rm = TRUE)
 ## 10 days
-sim10day.xts <- simit(tv.xts[,1], wwidth = 961)
+sim10day.xts <- simit(tv.xts[,1], wwidth = 961, na.rm = TRUE)
 ## 14 days
-sim14day.xts <- simit(tv.xts[,1], wwidth = 1344)
+sim14day.xts <- simit(tv.xts[,1], wwidth = 1344, na.rm = TRUE)
 
 
 pdf(width = 35)
-                                        #for(tti in 1:length(interv.day)) {
-for(tti in 1:10) {
+for(tti in 1:length(interv.day)) {
     longfrom.to <- paste(interv.day[tti]-5,interv.day[tti]+6, sep = "/")
     longterm.xts <- tv.xts[longfrom.to,1]
     long.rang <- range(longterm.xts)

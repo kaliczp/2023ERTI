@@ -23,7 +23,7 @@ dev.off()
 
 plot(tv.xts$Controll['2018-11-01/2019-04-01'])
 
-simit <- function(x, fromto = NULL, wwidth = 13, diff.plot = FALSE) {
+simit <- function(x, fromto = NULL, wwidth = 13, diff.plot = FALSE, na.rm = FALSE) {
     ## Cut with window
     if(is.null(fromto)) {
         windowed <- x
@@ -39,7 +39,13 @@ simit <- function(x, fromto = NULL, wwidth = 13, diff.plot = FALSE) {
         plot(tst.diff)
         axis(2,0,tck=1, lab = FALSE)
     }
-    xts(filtered, index(windowed))
+    xtstime <- index(windowed)
+    if(na.rm) {
+        remove.na <- !is.na(filtered)
+        filtered <- filtered[remove.na]
+        xtstime <- xtstime[remove.na]
+    }
+    xts(filtered, xtstime)
 }
 
 long.rang.full <- long.rang
