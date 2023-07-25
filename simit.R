@@ -23,9 +23,13 @@ dev.off()
 
 plot(tv.xts$Controll['2018-11-01/2019-04-01'])
 
-simit <- function(x, fromto, wwidth = 13, diff.plot = FALSE) {
+simit <- function(x, fromto = NULL, wwidth = 13, diff.plot = FALSE) {
     ## Cut with window
-    windowed <- x[from.to]
+    if(is.null(fromto)) {
+        windowed <- x
+    } else {
+        windowed <- x[from.to]
+    }
     ## Generate filter
     filter.vec <- rep(1/wwidth, wwidth)
     filtered <- filter(coredata(windowed), filter = filter.vec)
