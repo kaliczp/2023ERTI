@@ -21,8 +21,8 @@ recharge <- white.lmxts(x = tv.xts[,1], at = interv.day)
 plot(interv.day,recharge)
 axis(2,0,tck=1)
 
-recharge[1:10]
-plot.zoo(tv.xts['2018-11-01/2018-11-10',1])
+    plot.intervall <- '2018-11-01/2018-11-10'
+    plot.zoo(tv.xts[plot.intervall,1])
 for(tti in 1:10) {
 points(as.POSIXct(interv.day[tti]),as.numeric(coredata(tv.xts[as.character(interv.day[tti]),1][1])))
 points(as.POSIXct(interv.day[tti]+1),recharge[tti]/1000+as.numeric(coredata(tv.xts[as.character(interv.day[tti]),1][1])))
