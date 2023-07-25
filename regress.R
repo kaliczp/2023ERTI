@@ -3,7 +3,7 @@ white.lmxts <- function(x, at, time.unit = "sec") {
 recharge <- numeric()
 ## Based on simit.R
     for(tti in 1:length(at)) {
-        longfrom.to <- paste(paste0(at[tti], " 00:00"),
+        longfrom.to <- paste(paste0(at[tti] - 1, " 23:59"),
                              paste0(at[tti], " 04:00"),
                              sep = "/")
         recharge.xts <- x[longfrom.to]
