@@ -1,12 +1,22 @@
+white.lmxts <- function(x, at, time.unit = "sec") {
+    require(xts)
 recharge <- numeric()
 ## Based on simit.R
-for(tti in 1:length(interv.day)) {
-    longfrom.to <- paste(interv.day[tti]-3,interv.day[tti]+3, sep = "/")
-    longterm.xts <- tv.xts[longfrom.to,1]
-    longterm.lm <- lm(coredata(longterm.xts) ~ as.numeric(index(longterm.xts)))
-    recharge <- c(recharge, as.numeric(coefficients(longterm.lm)[2]))
+    for(tti in 1:length(at)) {
+        longfrom.to <- paste(paste0(at[tti], " 00:00"),
+                             paste0(at[tti], " 04:00"),
+                             sep = "/")
+        recharge.xts <- x[longfrom.to]
+        longterm.lm <- lm(coredata(recharge.xts) ~ as.numeric(index(recharge.xts)))
+        recharge <- c(recharge, as.numeric(coefficients(longterm.lm)[2]))
+    }
+    if(time.unit == "sec") {
+        recharge <- recharge*60*60*24*1000
+    }
+    recharge
 }
-recharge <- recharge*60*60*24*1000
+
+recharge <- white.lmxts(x = tv.xts[,1], at = interv.day)
 
 plot(interv.day,recharge)
 axis(2,0,tck=1)
