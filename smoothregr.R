@@ -45,6 +45,9 @@ recharge$s14day <- white.lmxts(x = sim14day.xts, at = interv.day)
 recharge.xts <- xts(recharge, interv.day)
 
 pdf(width = 35)
+
+png(width = 2400)
+## img2pdf --output out.pdf *png # in shell
 for(tti in 1:length(interv.day)) {
     longfrom.to <- paste(interv.day[tti]-5,interv.day[tti]+6, sep = "/")
     longterm.xts <- tv.xts[longfrom.to,1]
