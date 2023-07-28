@@ -7,5 +7,6 @@ plot(FigRechGw[,c(3,5)])
 pdf(width = 10)
 for(akt.name in names(recharge.xts))
 plot(FigRechGw[,3, drop = TRUE], recharge.xts[,akt.name] * 0.0932, main = akt.name,
+     xlim = c(0,1.8), ylim = c(-1,8), xaxs = "i", yaxs = "i",
      ylab = "Recharge (mm)", xlab = "delta GWL (m)")
 dev.off()
