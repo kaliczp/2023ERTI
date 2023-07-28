@@ -10,3 +10,5 @@ plot(FigRechGw[,3, drop = TRUE], recharge.xts[,akt.name] * 0.0932, main = akt.na
      xlim = c(0,1.8), ylim = c(-1,8), xaxs = "i", yaxs = "i",
      ylab = "Recharge (mm)", xlab = "delta GWL (m)")
 dev.off()
+
+recharge.xts[c(13, 21, 22, 24, 25, 30, 33, 34, 36, 121, 129),] * 0.0932
