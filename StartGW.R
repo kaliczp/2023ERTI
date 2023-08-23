@@ -12,8 +12,10 @@ plot(Start.chron, xlab = "")
 
 StartGW.df <- data.frame(GW = StartGW.raw[, 2, drop = TRUE], Time = Start.chron)
 
+Plotchron <- times(c("06:30:00", "23:59:59"))
 plot(Time ~ GW, data = StartGW.df,
      xlab = "Groundwater level (m)",
-     yaxt = "n",
+     ylim = Plotchron[c(1,length(Plotchron))],
+     yaxt = "n", yaxs = "i",
      ylab = "")
 mtext("Start time of daily recharge period", side = 2, line = 3)
