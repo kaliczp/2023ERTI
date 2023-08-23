@@ -5,7 +5,7 @@ plot(StartGW.raw)
 library(chron)
 
 ## min 21 max 13
-Start.shift <- StartGW.raw[,1, drop = TRUE] + 13 * 60 * 60
+Start.shift <- StartGW.raw[,1, drop = TRUE] + 8.5 * 60 * 60
 
 Start.chron <- times(format(Start.shift, "%H:%M:%S"))
 plot(Start.chron, xlab = "")
