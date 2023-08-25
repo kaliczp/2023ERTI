@@ -19,6 +19,7 @@ StartGW3.lm  <- lm(Time ~ GW + I(GW^2), data = StartGW.df[StartGW.df$GW > -8.6,]
 Plotchron <- times(c("06:30:00", paste(seq(7,23, by = 3), "30:00", sep = ":"), "23:59:59"))
 plot(Time ~ GW, data = StartGW.df,
      xlab = "Groundwater level (m)",
+     xlim = c(-6.833, -8.707),
      ylim = Plotchron[c(1,length(Plotchron))],
      yaxt = "n", yaxs = "i",
      ylab = "")
