@@ -23,5 +23,6 @@ plot(Time ~ GW, data = StartGW.df,
      ylab = "")
 mtext("Start time of daily recharge period", side = 2, line = 3)
 axis(2, at = Plotchron[- c(1,length(Plotchron))], lab = paste0(c(23, seq(from = 2, to = 14, by = 3)),":00"))
-abline(StartGW.lm)
-abline(StartGW2.lm, col = "grey")
+abline(StartGW.lm, col = "grey")
+abline(StartGW2.lm)
+points(StartGW.df[StartGW.df$GW < -8.6,], col = "gray")
