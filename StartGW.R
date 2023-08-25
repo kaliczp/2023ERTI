@@ -14,6 +14,7 @@ StartGW.df <- data.frame(GW = StartGW.raw[, 2, drop = TRUE], Time = Start.chron)
 
 StartGW.lm  <- lm(Time ~ GW, data = StartGW.df)
 StartGW2.lm  <- lm(Time ~ GW, data = StartGW.df[StartGW.df$GW > -8.6,])
+StartGW3.lm  <- lm(Time ~ GW + I(GW^2), data = StartGW.df[StartGW.df$GW > -8.6,])
 
 Plotchron <- times(c("06:30:00", paste(seq(7,23, by = 3), "30:00", sep = ":"), "23:59:59"))
 plot(Time ~ GW, data = StartGW.df,
@@ -26,3 +27,4 @@ axis(2, at = Plotchron[- c(1,length(Plotchron))], lab = paste0(c(23, seq(from = 
 abline(StartGW.lm, col = "grey")
 abline(StartGW2.lm)
 points(StartGW.df[StartGW.df$GW < -8.6,], col = "gray")
+lines(StartGW.df[StartGW.df$GW > -8.6, "GW"], predict(StartGW3.lm), col = 2)
