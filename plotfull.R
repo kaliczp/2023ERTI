@@ -8,14 +8,14 @@ plot.fullgw <- function(gw, met, outfile = NULL, datelim, temp = TRUE, xaxs.defa
         pdf(outfile, width = 14)
     }
 par(mar = c(3.1, 4.1, 0.6, 4.1))
-plot.zoo(gw[,1],
+plot.zoo(gw[,1], lwd = 2,
          xaxs = "i", yaxs = "i",
          xaxt = "n",
          xlab = "", ylab = "GW [m]",
          xlim = datelim, ylim = c(-8.76, -2)
          )
 lines(as.zoo(gw[,2]),
-      col = 2)
+      col = "#018571", lwd = 2)
     if(xaxs.default) {
         axis.POSIXct(1)
     } else {
@@ -23,7 +23,7 @@ lines(as.zoo(gw[,2]),
         axis(1, at = timeaxisdata, label = FALSE)
         axis.POSIXct(1, at = timeaxisdata + 183 * 24 * 60 *60, format = "%Y", tck = 0)
     }
-legend("bottomleft", legend = c("Oak", "Contr."), lwd = 1, col = 1:2)
+legend("bottomleft", legend = c("Oak", "Contr."), lwd = 2, col = c(1,"#018571"))
 par(new = TRUE)
 plot.zoo(met[,3], type = "h", lend = 2,
          xaxs = "i", yaxs = "i",
