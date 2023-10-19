@@ -18,6 +18,10 @@ lines(as.zoo(gw[,2]),
       col = 2)
     if(xaxs.default) {
         axis.POSIXct(1)
+    } else {
+        timeaxisdata <- as.POSIXct(paste0("20",16:22,"-01-01"))
+        axis(1, at = timeaxisdata, label = FALSE)
+        axis.POSIXct(1, at = timeaxisdata + 183 * 24 * 60 *60, format = "%Y", tck = 0)
     }
 legend("bottomleft", legend = c("Oak", "Contr."), lwd = 1, col = 1:2)
 par(new = TRUE)
