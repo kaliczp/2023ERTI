@@ -3,6 +3,7 @@ min(tv.xts[,1], na.rm = TRUE);max(tv.xts[,2], na.rm = TRUE)
 datelim.full <- c(ISOdate(2018,11,1, tz = "UTC"), ISOdate(2022,10,10, tz = "UTC"))
 
 plot.fullgw <- function(gw, met, outfile = NULL, datelim, temp = TRUE) {
+    require(xts)
     if(!is.null(outfile)) {
         pdf(outfile, width = 14)
     }
