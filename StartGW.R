@@ -16,7 +16,13 @@ StartGW.lm  <- lm(Time ~ GW, data = StartGW.df)
 StartGW2.lm  <- lm(Time ~ GW, data = StartGW.df[StartGW.df$GW > -8.6,])
 StartGW3.lm  <- lm(Time ~ GW + I(GW^2), data = StartGW.df[StartGW.df$GW > -8.6,])
 
+
 Plotchron <- times(c("06:30:00", paste(seq(7,23, by = 3), "30:00", sep = ":"), "23:59:59"))
+
+pdf("Fig12StartGW.pdf", width = 11/2.54, height = 11/2.54)
+png("Fig12StartGW.png", width = 11, height = 11, units = "cm", res = 600)
+
+par(mar = c(4.1,4.1,0.2,0.2))
 plot(Time ~ GW, data = StartGW.df[StartGW.df$GW > -8.6,],
      xlab = "Groundwater level (m)",
      xlim = c(-6.833, -8.707),
@@ -30,4 +36,4 @@ points(StartGW.df[StartGW.df$GW < -8.6,], col = "gray")
 # lines(StartGW.df[StartGW.df$GW > -8.6, "GW"], predict(StartGW3.lm), col = 2)
 
 ## Andrásnak
-write.csv2(StartGW.df, "StartGW_df.csv")
+write.csv2(StartGW.df, "StartGW_df.csv", row.names = FALSE)
