@@ -28,3 +28,6 @@ axis(2, at = Plotchron[- c(1,length(Plotchron))], lab = paste0(c(23, seq(from = 
 abline(StartGW2.lm)
 points(StartGW.df[StartGW.df$GW < -8.6,], col = "gray")
 # lines(StartGW.df[StartGW.df$GW > -8.6, "GW"], predict(StartGW3.lm), col = 2)
+
+## Andrásnak
+write.csv2(StartGW.df, "StartGW_df.csv")
