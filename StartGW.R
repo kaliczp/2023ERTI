@@ -26,11 +26,15 @@ par(mar = c(4.1,4.1,0.2,0.2))
 plot(Time ~ GW, data = StartGW.df[StartGW.df$GW > -8.6,],
      xlab = "Groundwater level (m)",
      xlim = c(-6.833, -8.707),
+     xaxt = "n",
      ylim = Plotchron[c(1,length(Plotchron))],
      yaxt = "n", yaxs = "i",
      ylab = "")
 mtext("Start time of daily recharge period", side = 2, line = 3)
 axis(2, at = Plotchron[- c(1,length(Plotchron))], lab = paste0(c(23, seq(from = 2, to = 14, by = 3)),":00"))
+xat <- axTicks(1, usr=par("usr")[1:2])
+labs <- gsub("-", "\U2212", format(print.default(xat), digits = 2))
+axis(1, at=xat, labels=labs)
 abline(StartGW2.lm)
 points(StartGW.df[StartGW.df$GW < -8.6,], col = "gray")
 # lines(StartGW.df[StartGW.df$GW > -8.6, "GW"], predict(StartGW3.lm), col = 2)
