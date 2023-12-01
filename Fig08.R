@@ -12,6 +12,7 @@ Fig08 <- data.frame(Year = factor(raw08[,1, drop = TRUE]),
 library(ggplot2)
 
 gg08 <- ggplot(data = Fig08, aes(x = GW, y = Recharge)) +
+    geom_smooth(method = lm, se = FALSE, colour = "black", linewidth = 0.5) +
     geom_point(aes(fill = Year), pch = 21) + 
     scale_fill_manual(values = c("#4d99e6",
                                  "#cc0033",
@@ -20,7 +21,6 @@ gg08 <- ggplot(data = Fig08, aes(x = GW, y = Recharge)) +
                                  "#e6cc1a"
                                  )
                       ) +
-    geom_smooth(method = lm) +
     xlab("Groundwater level (m)") +
     ylab("Recharge (mm/day)") +
     scale_x_continuous(breaks = seq(-7, -6.25, 0.25), 

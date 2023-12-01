@@ -12,6 +12,7 @@ Fig10 <- data.frame(Year = factor(raw10[1:47,3, drop = TRUE]),
 library(ggplot2)
 
 gg10 <- ggplot(data = Fig10, aes(x = Amplitude, y = Recharge)) +
+    geom_smooth(method = lm, se = FALSE, colour = "black", linewidth = 0.5) +
     geom_point(aes(fill = Year), pch = 21) +
     scale_fill_manual(values = c('#4d99e6', 
                                  '#cc0033',
@@ -19,7 +20,6 @@ gg10 <- ggplot(data = Fig10, aes(x = Amplitude, y = Recharge)) +
                                  '#ff6633'
                                  )
                       ) +
-    geom_smooth(method = lm) +
     xlab("Amplitude (mm)") +
     ylab("Recharge (mm/day)") +
     theme_minimal() +
