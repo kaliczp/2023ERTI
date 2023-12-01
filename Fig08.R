@@ -23,6 +23,10 @@ gg08 <- ggplot(data = Fig08, aes(x = GW, y = Recharge)) +
     geom_smooth(method = lm) +
     xlab("Groundwater level (m)") +
     ylab("Recharge (mm/day)") +
+    scale_x_continuous(breaks = seq(-7, -6.25, 0.25), 
+                       labels = ~sub("-", "\u2212", .x)) +
+    scale_y_continuous(breaks = seq(-0.5, 1, 0.5), 
+                       labels = ~sub("-", "\u2212", .x)) +
     theme_minimal() +
     theme(axis.title.x = element_text(face = "bold"),
           axis.title.y = element_text(face = "bold")
