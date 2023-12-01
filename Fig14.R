@@ -36,3 +36,7 @@ gg14
 png("Fig14R.png", width = 14.25, height = 14.25, units = "cm", res = 300)
 gg14
 dev.off()
+
+pdf("Fig14R.pdf", width = 14.25/2.54, height = 14.25/2.54)
+gg14
+dev.off()

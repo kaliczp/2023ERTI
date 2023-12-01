@@ -38,3 +38,7 @@ gg10Final <-cowplot::plot_grid(
 png("Fig10R.png", width = 15, height = 13.5, units = "cm", res = 300)
 gg10Final
 dev.off()
+
+pdf("Fig10R.pdf", width = 15/2.54, height = 13.5/2.54)
+gg10Final
+dev.off()

@@ -37,4 +37,8 @@ png("Fig06R.png", width = 14.25, height = 14.25, units = "cm", res = 300)
 gg06
 dev.off()
 
+pdf("Fig06R.pdf", width = 14.25/2.54, height = 14.25/2.54)
+gg06
+dev.off()
+
 
