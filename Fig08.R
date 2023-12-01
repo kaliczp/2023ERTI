@@ -29,6 +29,13 @@ gg08 <- ggplot(data = Fig08, aes(x = GW, y = Recharge)) +
           )
 gg08
 
+gg08Large <- gg08 + geom_point(aes(fill = Year), pch = 21, size = 3)
+
+gg08Final <-cowplot::plot_grid(
+                         gg08 + theme(legend.position = "none"),
+                         cowplot::get_legend(gg08Large),
+                         ncol = 2, rel_widths = c(4, 0.8))
+
 png("Fig08R.png", width = 15, height = 13.5, units = "cm", res = 300)
-gg08
+gg08Final
 dev.off()

@@ -28,6 +28,13 @@ gg10 <- ggplot(data = Fig10, aes(x = Amplitude, y = Recharge)) +
           )
 gg10
 
+gg10Large <- gg10 + geom_point(aes(fill = Year), pch = 21, size = 3)
+
+gg10Final <-cowplot::plot_grid(
+                         gg10 + theme(legend.position = "none"),
+                         cowplot::get_legend(gg10Large),
+                         ncol = 2, rel_widths = c(4, 0.8))
+
 png("Fig10R.png", width = 15, height = 13.5, units = "cm", res = 300)
-gg10
+gg10Final
 dev.off()

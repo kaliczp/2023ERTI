@@ -28,6 +28,13 @@ gg07 <- ggplot(data = Fig07, aes(x = Delta, y = Recharge)) +
           )
 gg07
 
+gg07Large <- gg07 + geom_point(aes(fill = Year), pch = 21, size = 3)
+
+gg07Final <-cowplot::plot_grid(
+                         gg07 + theme(legend.position = "none"),
+                         cowplot::get_legend(gg07Large),
+                         ncol = 2, rel_widths = c(4, 0.8))
+
 png("Fig07R.png", width = 15, height = 13.5, units = "cm", res = 300)
-gg07
+gg07Final
 dev.off()
