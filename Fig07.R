@@ -10,9 +10,15 @@ Fig07 <- data.frame(Year = factor(raw07[,1, drop = TRUE]),
 ## Plot
 library(ggplot2)
 
-
 gg07 <- ggplot(data = Fig07, aes(x = Delta, y = Recharge)) +
     geom_point(aes(fill = Year), pch = 21) + 
+    scale_fill_manual(values = c("#4d99e6",
+                                 "#cc0033",
+                                 "#33801a",
+                                 "#ff6633",
+                                 "#e6cc1a"
+                                 )
+                      ) +
     geom_smooth(method = lm) +
     xlab("Difference in groundwater level (m)") +
     ylab("Recharge (mm/day)") +
